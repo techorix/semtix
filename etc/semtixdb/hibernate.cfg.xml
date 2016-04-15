@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"/home/hagen/hibernate-configuration-3.0.dtd">
+<!-- "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd" -->
+<hibernate-configuration>
+ <session-factory>
+	 <!-- Database connection settings here is an example for postgresql but you may use any JDBC connector -->
+	 <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/semtix</property>
+	 <property name="connection.driver_class">org.postgresql.Driver</property>
+	 <property name="connection.username">your_username_for_your_db</property>
+	 <property name="connection.password">the_password_for_your_username</property>
+	 <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+	 
+	 <!-- SQL dialect - generate SQL for a particular database -->
+	 <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+	 
+	 <!-- Echo all executed SQL statements -->
+	 <property name="show_sql">true</property>
+	 
+	 <!-- Connection Pool Configuration -->
+	 <property name="hibernate.c3p0.min_size">1</property>
+	 <property name="hibernate.c3p0.max_size">10</property>
+	 <property name="hibernate.c3p0.timeout">3</property>
+	 <property name="hibernate.c3p0.max_statements">100</property>
+	 <property name="hibernate.c3p0.idle_test_period">3000</property>
+	 
+	 <!-- Enable Hibernate's automatic session context management -->
+	 <property name="current_session_context_class">thread</property>
+
+     	<!-- Automatically Creating and Updating DB (change to 'create' for development)-->
+    	 <property name="hibernate.hbm2ddl.auto">update</property>
+
+     	<!-- Mapped Classes -->
+     	<mapping class="org.semtix.db.dao.Anmerkung" />
+     	<mapping class="org.semtix.db.dao.Antrag" />
+     	<mapping class="org.semtix.db.dao.AntragHaerte" />
+	<mapping class="org.semtix.db.dao.Berechnungszettel" />
+	<mapping class="org.semtix.db.dao.LabeledDecimalList" />
+	<mapping class="org.semtix.db.dao.Conf" />
+     	<mapping class="org.semtix.db.dao.Nachreichung" />
+     	<mapping class="org.semtix.db.dao.Person" />
+     	<mapping class="org.semtix.db.dao.Semester" />
+     	<mapping class="org.semtix.db.dao.SemtixUser" />
+     	<mapping class="org.semtix.db.dao.Textbaustein" />
+     	<mapping class="org.semtix.db.dao.Unterlagen" />
+     	<mapping class="org.semtix.db.dao.Vorgang" />
+  </session-factory>
+ </hibernate-configuration>
