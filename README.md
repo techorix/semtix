@@ -1,0 +1,2 @@
+# semtix
+Die Semesterticketbüroverwaltungssoftware
