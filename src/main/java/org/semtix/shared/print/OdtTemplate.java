@@ -319,6 +319,14 @@ public class OdtTemplate {
 			// 2) Create Java model context
 			IContext context = report.createContext();
 			for (Map.Entry<String, Object> entry : data.entrySet()) {
+				if (entry.getKey().equals("text")) {
+					String text = (String) entry.getValue();
+					if (text.contains("&")) {
+						text = text.replaceAll("&","+");
+						context.put(entry.getKey(), text);
+						continue;
+					}
+				}
 				context.put(entry.getKey(), entry.getValue());
 			}
 
