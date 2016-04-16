@@ -1,14 +1,28 @@
 
-DISLAIMER
+INTRODUCTION
 =========
 
-This software is a free (GNU Affero Licensed) open source software meant to help German Semesterticket Offices and 
+This software is a free (GNU Affero 3.0 licensed) open source software meant to help German Semesterticket Offices and 
 therefore contains many terms and explanations only aimed at a german-speaking audience.
 
-If you are related to a University AstA and/or Semesterticketbüro and want to use this software, please contact the
-author who is reachable at MichaelMertins@gmail.com for consulting, initial help and support or as a courtesy.
+During the last decade the Semesterticketbüro of the Humboldt University Berlin developed this software to 
+ * Remove dependency of Microsoft license fees as this software will run on all operating systems supporting Java 7
+ * Adapt the software to fit its requirement in the best possible way
+ * Be independent from other publishers
+ * Publish the software for the benefit of everyone else
 
-The following steps are the bare minimum you will need to execute in order to run the software.
+While it may remain unclear who started the idea of this software, from 2011 to 2014 Jürgen Schmelze designed large parts
+of its interface. Starting from 2014, Michael Mertins finished up missing functionalities and is working on this software
+until today.
+
+If you are related to a University AstA and/or Semesterticketbüro and want to use this software, please contact the
+author who is reachable at MichaelMertins@gmail.com for consulting, initial help and support or just as a courtesy.
+
+We are very interested in spreading and supporting this software and hope, many other offices will now be able to develop their
+own application software based on this as well.
+
+---
+
 
 
 RUNNING SEMTIX CLIENT
@@ -53,8 +67,16 @@ The server is only required to run the actual SQL database:
 ---
 
 ### HINTS/FAQ:
-- configure git to use odt2txt when pushing new Odt-Templates in order to avoid binary blobs
 - check the tests in order to understand the determination process of how much each student will get paid
 - other jdbc databases but PostgreSQL should also work but have not been tested
+- configure git to use odt2txt when pushing new Odt-Templates in order to avoid binary blobs  
 
+In your .git/config :    
+``
+[diff "odt"]
+        binary = true
+        textconv = odt2txt
+``
 
+In your .gitattributes :   
+`*.odt diff=odt`
