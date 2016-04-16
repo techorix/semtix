@@ -13,12 +13,12 @@ The following steps are the bare minimum you will need to execute in order to ru
 
 RUNNING SEMTIX CLIENT
 ======================
-
+On each client:
 - Install _openjdk-7-(jre|jdk)_ and _libreoffice_
 - Setup and configure printer, so `/usr/bin/soffice -p` works
 - Set `logo=0` in _sofficerc_, e.g. /etc/libreoffice/sofficerc, /usr/lib/libreoffice/program/sofficerc
 - Copy **semtixconf.properties, log4j.properties and hibernate.cfg.xml to /etc/semtixdb/** and adjust them to your environment
-- Create _/var/log/semtixdb/_ and make accessible for users that run semtix
+- Create `/var/log/semtixdb/` and make accessible for users that run semtix
 - Copy templates folder to the place specified in semtixconf.properties
 - Execute `mvn clean install` where the _pom.xml_ file is located whenever you want to build from source with jdk7
 
@@ -33,26 +33,28 @@ RUNNING SEMTIX CLIENT
 - Put your letter templates in the templates folder
 - In ExternalSettings.java you can specifiy the String values for these templates
 - May also need to set the templates in the `semtixconf.properties` 
-- While printing letters or other documents you may run into problems as the engine expects several freemarker placeholders to be present. A complete list of placeholders is, at the moment, only available by looking at the java-code. We use code like this in our odt-templates: 
+- While printing letters or other documents you may run into problems as the engine expects several freemarker placeholders to be present. A complete list of placeholders is, at the moment, only available by looking at the java-code. We use code like this in our odt-templates: \s\s 
       ``
-      `${vorname} ${nachname}[#if co??]${"\n"}c/o ${co}[/#if]`
-      `[#if zusatz??]${"\n"}${zusatz}[/#if]` 
+      ${vorname} ${nachname}[#if co??]${"\n"}c/o ${co}[/#if]
+      [#if zusatz??]${"\n"}${zusatz}[/#if] 
       ``  
 
 
 --- 
 
 ### ON SERVER:
+The server is only required to run the actual SQL database:
 - create postgresql db (we use driver 9.1-901-1.jdbc4 from within hibernate 4.3.8)
   and make sure the db is accessible by clients (usually port 5432)
-- install `postgresql-contrib` and execute _CREATE EXTENSION unaccent;_ on semtix db
+- install `postgresql-contrib` and execute `CREATE EXTENSION unaccent;` on semtix db
 - Don't forget to configure `/etc/semtixdb/hibernate.cfg.xml` accordingly
 
 
 ---
 
-### HINTS:
+### HINTS/FAQ:
 - configure git to use odt2txt when pushing new Odt-Templates in order to avoid binary blobs
-- 
+- check the tests in order to understand the determination process of how much each student will get paid
+- other jdbc databases but PostgreSQL should also work but have not been tested
 
 
