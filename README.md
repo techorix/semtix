@@ -33,7 +33,7 @@ On each client:
 - Put your letter templates in the templates folder
 - In ExternalSettings.java you can specifiy the String values for these templates
 - May also need to set the templates in the `semtixconf.properties` 
-- While printing letters or other documents you may run into problems as the engine expects several freemarker placeholders to be present. A complete list of placeholders is, at the moment, only available by looking at the java-code. We use code like this in our odt-templates: \s\s 
+- While printing letters or other documents you may run into problems as the engine expects several freemarker placeholders to be present. A complete list of placeholders is, at the moment, only available by looking at the java-code. We use code like this in our odt-templates:     
       ``
       ${vorname} ${nachname}[#if co??]${"\n"}c/o ${co}[/#if]
       [#if zusatz??]${"\n"}${zusatz}[/#if] 
