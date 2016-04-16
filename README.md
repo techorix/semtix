@@ -25,18 +25,19 @@ RUNNING SEMTIX CLIENT
 ---
 
 ### FIRST STEPS ON CLIENT
-- Datenbank -> Neues Semester Anlegen and create a new Semester
-- Datenbank -> Aktuelles Semester and select the Semester as Global Semester
-- AdminTools and initialize all relevant settings. That also entails clicking on "Speichern" at the path settings in case a field is missing from your semtixconf.properties
+- Datenbank `->` Neues Semester Anlegen and create a new Semester
+- Datenbank `->` Aktuelles Semester and select the Semester as Global Semester
+- AdminTools and initialize all relevant settings. That also entails clicking on "Speichern" at the path settings in case a field is missing from your `semtixconf.properties`
 - Fill other data that is frequently used (e.g. Textbausteine)
-- In DBHandlerTextbausteine.java you may add default text blocks for daily usage and/or development/testing
+- In `DBHandlerTextbausteine.java` you may add default text blocks for daily usage and/or development/testing
 - Put your letter templates in the templates folder
 - In ExternalSettings.java you can specifiy the String values for these templates
-- May also need to set the templates in the semtixconf.properties 
+- May also need to set the templates in the `semtixconf.properties` 
 - While printing letters or other documents you may run into problems as the engine expects several freemarker placeholders to be present. A complete list of placeholders is, at the moment, only available by looking at the java-code. We use code like this in our odt-templates: 
-      ${vorname} ${nachname}[#if co??]${"\n"}c/o ${co}[/#if]
-                  [#if zusatz??]${"\n"}${zusatz}[/#if] 
-
+      ``
+      `${vorname} ${nachname}[#if co??]${"\n"}c/o ${co}[/#if]`
+      `[#if zusatz??]${"\n"}${zusatz}[/#if]` 
+      ``  
 
 
 --- 
@@ -44,10 +45,14 @@ RUNNING SEMTIX CLIENT
 ### ON SERVER:
 - create postgresql db (we use driver 9.1-901-1.jdbc4 from within hibernate 4.3.8)
   and make sure the db is accessible by clients (usually port 5432)
-- install postgresql-contrib and execute _CREATE EXTENSION unaccent;_ on semtix db
-- Don't forget to configure /etc/semtixdb/hibernate.cfg.xml accordingly
+- install `postgresql-contrib` and execute _CREATE EXTENSION unaccent;_ on semtix db
+- Don't forget to configure `/etc/semtixdb/hibernate.cfg.xml` accordingly
 
 
+---
 
+### HINTS:
+- configure git to use odt2txt when pushing new Odt-Templates in order to avoid binary blobs
+- 
 
 
