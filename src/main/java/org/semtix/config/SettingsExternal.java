@@ -81,15 +81,13 @@ public class SettingsExternal {
     public static String TEMPLATE_AZA_HU = "";
     public static String TEMPLATE_AZA_CHARITE = "";
     public static String TEMPLATE_AZA_FINREF = "";
+    public static String DECKBLATT_DATEI = "";
     public static String DECKBLATT_DATEI_KW = "";
     public static String DECKBLATT_DATEI_HU = "";
-    public static String DECKBLATT_DATEI = "";
     public static String TEMPLATE_NACHFRAGE_DE = "";
     public static String TEMPLATE_NACHFRAGE_EN = "";
-    public static String TEMPLATE_NACHFRAGE = "";
     public static String TEMPLATE_MAHNUNG_DE = "";
     public static String TEMPLATE_MAHNUNG_EN = "";
-    public static String TEMPLATE_MAHNUNG = "";
     /**
      * Pfad zu den LOG4-Properties, damit man sie auch nach /etc/ packen kann
      */
@@ -268,12 +266,6 @@ public class SettingsExternal {
                 TEMPLATE_ANTRAG_BAR = einstellungen.getProperty("vorlage.bescheid.bar");
             if (einstellungen.getProperty("vorlage.bescheid.konto").length() > 0)
                 TEMPLATE_ANTRAG_KONTO = einstellungen.getProperty("vorlage.bescheid.konto");
-            if (einstellungen.getProperty("vorlage.bescheid.ablehnung.kulanz").length() > 0)
-                TEMPLATE_ANTRAG_ABGELEHNT_KULANZ = einstellungen.getProperty("vorlage.bescheid.ablehnung.kulanz");
-            if (einstellungen.getProperty("vorlage.bescheid.bar.kulanz").length() > 0)
-                TEMPLATE_ANTRAG_BAR_KULANZ = einstellungen.getProperty("vorlage.bescheid.bar.kulanz");
-            if (einstellungen.getProperty("vorlage.bescheid.konto.kulanz").length() > 0)
-                TEMPLATE_ANTRAG_KONTO_KULANZ = einstellungen.getProperty("vorlage.bescheid.konto.kulanz");
             if (einstellungen.getProperty("vorlage.auszahlungsanordnung").length() > 0)
                 TEMPLATE_AZA = einstellungen.getProperty("vorlage.auszahlungsanordnung");
             if (einstellungen.getProperty("vorlage.auszahlungsanordnung.hu").length() > 0)
@@ -282,27 +274,29 @@ public class SettingsExternal {
                 TEMPLATE_AZA_CHARITE = einstellungen.getProperty("vorlage.auszahlungsanordnung.charite");
             if (einstellungen.getProperty("vorlage.auszahlungsanordnung.finref").length() > 0)
                 TEMPLATE_AZA_FINREF = einstellungen.getProperty("vorlage.auszahlungsanordnung.finref");
-            if (einstellungen.getProperty("deckblatt.auszahlungsdatei").length() > 0)
+            if (einstellungen.getProperty("deckblatt.auszahlungsdatei").length() > 0) {
                 DECKBLATT_DATEI = einstellungen.getProperty("deckblatt.auszahlungsdatei");
-            if (einstellungen.getProperty("deckblatt.auszahlungsdatei_hu").length() > 0)
+            }
+            if (einstellungen.getProperty("deckblatt.auszahlungsdatei.hu").length() > 0) {
                 DECKBLATT_DATEI_HU = einstellungen.getProperty("deckblatt.auszahlungsdatei.hu");
-            if (einstellungen.getProperty("deckblatt.auszahlungsdatei_kw").length() > 0)
+            }
+            if (einstellungen.getProperty("deckblatt.auszahlungsdatei.kw").length() > 0) {
                 DECKBLATT_DATEI_KW = einstellungen.getProperty("deckblatt.auszahlungsdatei.kw");
-            if (einstellungen.getProperty("vorlage.nachfage.de").length() > 0)
-                TEMPLATE_NACHFRAGE_DE = einstellungen.getProperty("vorlage.nachfage.de");
-            if (einstellungen.getProperty("vorlage.nachfage.en").length() > 0)
-                TEMPLATE_NACHFRAGE_EN = einstellungen.getProperty("vorlage.nachfage.en");
-            if (einstellungen.getProperty("vorlage.nachfage").length() > 0)
-                TEMPLATE_NACHFRAGE = einstellungen.getProperty("vorlage.nachfage");
-            if (einstellungen.getProperty("vorlage.mahnung.de").length() > 0)
-                TEMPLATE_MAHNUNG_DE = einstellungen.getProperty("vorlage.mahnung.de");
-            if (einstellungen.getProperty("vorlage.mahnung.en").length() > 0)
-                TEMPLATE_MAHNUNG_EN = einstellungen.getProperty("vorlage.mahnung.en");
-            if (einstellungen.getProperty("vorlage.mahnung").length() > 0)
-                TEMPLATE_MAHNUNG = einstellungen.getProperty("vorlage.mahnung");
-
+            }
+            if (einstellungen.getProperty("vorlage.nachfage.EN").length() > 0) {
+                TEMPLATE_NACHFRAGE_EN = einstellungen.getProperty("vorlage.nachfage.EN");
+            }
+            if (einstellungen.getProperty("vorlage.nachfage.DE").length() > 0) {
+                TEMPLATE_NACHFRAGE_DE = einstellungen.getProperty("vorlage.nachfage.DE");;
+            }
+            if (einstellungen.getProperty("vorlage.mahnung.EN").length() > 0) {
+                TEMPLATE_MAHNUNG_EN = einstellungen.getProperty("vorlage.mahnung.EN");
+            }
+            if (einstellungen.getProperty("vorlage.mahnung.DE").length() > 0) {
+                TEMPLATE_MAHNUNG_DE = einstellungen.getProperty("vorlage.mahnung.DE");
+            }
         } catch (NullPointerException npe) {
-            logger.info("Eine oder mehrere Vorlagen sind nicht angegeben. Programm verwendet in diesen Fällen die voreingestellten Dateinamen.");
+            logger.warn("Eine oder mehrere Vorlagen sind nicht angegeben. Programm verwendet in diesen Fällen die voreingestellten Dateinamen.");
         }
     }
 
@@ -326,24 +320,18 @@ public class SettingsExternal {
         einstellungen.setProperty("vorlage.bescheid.ablehnung", TEMPLATE_ANTRAG_ABGELEHNT);
         einstellungen.setProperty("vorlage.bescheid.bar", TEMPLATE_ANTRAG_BAR);
         einstellungen.setProperty("vorlage.bescheid.konto", TEMPLATE_ANTRAG_KONTO);
-        einstellungen.setProperty("vorlage.bescheid.ablehnung.kulanz", TEMPLATE_ANTRAG_ABGELEHNT_KULANZ);
-        einstellungen.setProperty("vorlage.bescheid.bar.kulanz", TEMPLATE_ANTRAG_BAR_KULANZ);
-        einstellungen.setProperty("vorlage.bescheid.konto.kulanz", TEMPLATE_ANTRAG_KONTO_KULANZ);
 
         einstellungen.setProperty("vorlage.auszahlungsanordnung", TEMPLATE_AZA);
         einstellungen.setProperty("vorlage.auszahlungsanordnung.hu", TEMPLATE_AZA_HU);
-        einstellungen.setProperty("vorlage.auszahlungsanordnung.charite", TEMPLATE_AZA_CHARITE);
         einstellungen.setProperty("vorlage.auszahlungsanordnung.finref", TEMPLATE_AZA_FINREF);
 
         einstellungen.setProperty("deckblatt.auszahlungsdatei", DECKBLATT_DATEI);
         einstellungen.setProperty("deckblatt.auszahlungsdatei.hu", DECKBLATT_DATEI_HU);
         einstellungen.setProperty("deckblatt.auszahlungsdatei.kw", DECKBLATT_DATEI_KW);
 
-        einstellungen.setProperty("vorlage.nachfage", TEMPLATE_NACHFRAGE);
         einstellungen.setProperty("vorlage.nachfage.DE", TEMPLATE_NACHFRAGE_DE);
         einstellungen.setProperty("vorlage.nachfage.EN", TEMPLATE_NACHFRAGE_EN);
 
-        einstellungen.setProperty("vorlage.mahnung", TEMPLATE_MAHNUNG);
         einstellungen.setProperty("vorlage.mahnung.DE", TEMPLATE_MAHNUNG_DE);
         einstellungen.setProperty("vorlage.mahnung.EN", TEMPLATE_MAHNUNG_EN);
 

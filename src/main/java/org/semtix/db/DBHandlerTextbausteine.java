@@ -46,7 +46,7 @@ public class DBHandlerTextbausteine {
 
     public static void createDefaultValues() {
         DBHandlerTextbausteine dbHandlerTextbausteine = new DBHandlerTextbausteine();
-        dbHandlerTextbausteine.create(new Textbaustein(4, "example", "exampletext: Please look in constructor of Textbaustein.java for how to use this. The TextBaustein will be used in the program for mail correspondence and status management of applications and is a crucial part of the mitigating workload. You can use variables: {MonthFrom} {MonthTo} {Jahr} Which may be replaced by the respective Months and Year of the current Semester "));
+//        dbHandlerTextbausteine.create(new Textbaustein(4, "example", "exampletext: Please look in constructor of Textbaustein.java for how to use this. The TextBaustein will be used in the program for mail correspondence and status management of applications and is a crucial part of the mitigating workload. You can use variables: {MonthFrom} {MonthTo} {Jahr} Which may be replaced by the respective Months and Year of the current Semester "));
 
 
     }
