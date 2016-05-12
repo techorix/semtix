@@ -62,7 +62,7 @@ The server is only required to run the actual SQL database:
   and make sure the db is accessible by clients (usually port 5432)
 - install `postgresql-contrib` and execute `CREATE EXTENSION unaccent;` on semtix db
 - Don't forget to configure `/etc/semtixdb/hibernate.cfg.xml` accordingly
-
+- Performance tuning: http://www.postgresql.org/docs/9.1/static/sql-createindex.html
 
 ---
 
