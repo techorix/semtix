@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Semtix by techorix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Semtix</h1>
+      <h2 class="project-tagline">Die Semesterticketbüroverwaltungssoftware</h2>
+      <a href="https://github.com/techorix/semtix" class="btn">View on GitHub</a>
+      <a href="https://github.com/techorix/semtix/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/techorix/semtix/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>INTRODUCTION</h1>
+
+<p>This software is a free (GNU Affero 3.0 licensed) open source software meant to help German Semesterticket Offices and 
+therefore contains many terms and explanations only aimed at a german-speaking audience.</p>
+
+<p>During the last decade the Semesterticketbüro of the Humboldt University Berlin pursued the planning and development of this software to </p>
+
+<ul>
+<li>Remove dependency of Microsoft license fees as this software will run on all operating systems supporting Java 7</li>
+<li>Adapt the software to fit its requirement in the best possible way</li>
+<li>Be independent from other publishers</li>
+<li>Publish the software for the benefit of everyone else</li>
+</ul>
+
+<p>While it may remain unclear who started the idea of this software, from 2011 to 2014 Jürgen Schmelze designed large parts
+of its interface. Starting from 2014, Michael Mertins finished up missing functionalities and is working on this software
+until today.</p>
+
+<p>If you are related to a University AStA and/or Semesterticketbüro and want to use this software, please contact the
+author who is reachable at <a href="mailto:MichaelMertins@gmail.com">MichaelMertins@gmail.com</a> for consulting, initial help and support or just as a courtesy.</p>
+
+<p>We are very interested in spreading and supporting this software and hope, many other offices will now be able to develop their
+own application software based on this as well.</p>
+
+<hr>
+
+<h1>
+<a id="running-semtix-client" class="anchor" href="#running-semtix-client" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RUNNING SEMTIX CLIENT</h1>
+
+<p>On each client:</p>
+
+<ul>
+<li>Install <em>openjdk-7-(jre|jdk)</em> and <em>libreoffice</em>
+</li>
+<li>Setup and configure printer, so <code>/usr/bin/soffice -p</code> works</li>
+<li>Set <code>logo=0</code> in <em>sofficerc</em>, e.g. /etc/libreoffice/sofficerc, /usr/lib/libreoffice/program/sofficerc</li>
+<li>Copy <strong>semtixconf.properties, log4j.properties and hibernate.cfg.xml to /etc/semtixdb/</strong> and adjust them to your environment</li>
+<li>Create <code>/var/log/semtixdb/</code> and make accessible for users that run semtix</li>
+<li>Copy templates folder to the place specified in semtixconf.properties</li>
+<li>Execute <code>mvn clean install</code> where the <em>pom.xml</em> file is located whenever you want to build from source with jdk7</li>
+</ul>
+
+<hr>
+
+<h3>
+<a id="first-steps-on-client" class="anchor" href="#first-steps-on-client" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FIRST STEPS ON CLIENT</h3>
+
+<ul>
+<li>Datenbank <code>-&gt;</code> Neues Semester Anlegen and create a new Semester</li>
+<li>Datenbank <code>-&gt;</code> Aktuelles Semester and select the Semester as Global Semester</li>
+<li>AdminTools and initialize all relevant settings. That also entails clicking on "Speichern" at the path settings in case a field is missing from your <code>semtixconf.properties</code>
+</li>
+<li>Fill other data that is frequently used (e.g. Textbausteine)</li>
+<li>In <code>DBHandlerTextbausteine.java</code> you may add default text blocks for daily usage and/or development/testing</li>
+<li>Put your letter templates in the templates folder</li>
+<li>In ExternalSettings.java you can specifiy the String values for these templates</li>
+<li>May also need to set the templates in the <code>semtixconf.properties</code> </li>
+<li>While printing letters or other documents you may run into problems as the engine expects several freemarker placeholders to be present. A complete list of placeholders is, at the moment, only available by looking at the java-code. We use code like this in our odt-templates:<br>
+  <code>
+  ${vorname} ${nachname}[#if co??]${"\n"}c/o ${co}[/#if]
+  [#if zusatz??]${"\n"}${zusatz}[/#if] 
+</code><br>
+</li>
+</ul>
+
+<hr>
+
+<h3>
+<a id="on-server" class="anchor" href="#on-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ON SERVER:</h3>
+
+<p>The server is only required to run the actual SQL database:</p>
+
+<ul>
+<li>create postgresql db (we use driver 9.1-901-1.jdbc4 from within hibernate 4.3.8)
+and make sure the db is accessible by clients (usually port 5432)</li>
+<li>install <code>postgresql-contrib</code> and execute <code>CREATE EXTENSION unaccent;</code> on semtix db</li>
+<li>Don't forget to configure <code>/etc/semtixdb/hibernate.cfg.xml</code> accordingly</li>
+</ul>
+
+<hr>
+
+<h3>
+<a id="hintsfaq" class="anchor" href="#hintsfaq" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HINTS/FAQ:</h3>
+
+<ul>
+<li>check the tests in order to understand the determination process of how much each student will get paid</li>
+<li>other jdbc databases but PostgreSQL should also work but have not been tested</li>
+<li>configure git to use odt2txt when pushing new Odt-Templates in order to avoid binary blobs<br>
+</li>
+</ul>
+
+<p>In your .git/config :<br>
+<code>
+[diff "odt"]
+        binary = true
+        textconv = odt2txt
+</code></p>
+
+<p>In your .gitattributes :<br>
+<code>*.odt diff=odt</code></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/techorix/semtix">Semtix</a> is maintained by <a href="https://github.com/techorix">techorix</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
