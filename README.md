@@ -5,7 +5,7 @@ INTRODUCTION
 This software is a free (GNU Affero 3.0 licensed) open source software meant to help German Semesterticket Offices and 
 therefore contains many terms and explanations only aimed at a german-speaking audience.
 
-During the last decade the Semesterticketbüro of the Humboldt University Berlin developed this software to 
+During the last decade the Semesterticketbüro of the Humboldt University Berlin pursued planning and development of this software to 
  * Remove dependency of Microsoft license fees as this software will run on all operating systems supporting Java 7
  * Adapt the software to fit its requirement in the best possible way
  * Be independent from other publishers
@@ -15,7 +15,7 @@ While it may remain unclear who started the idea of this software, from 2011 to 
 of its interface. Starting from 2014, Michael Mertins finished up missing functionalities and is working on this software
 until today.
 
-If you are related to a University AstA and/or Semesterticketbüro and want to use this software, please contact the
+If you are related to a University AStA and/or Semesterticketbüro and want to use this software, please contact the
 author who is reachable at MichaelMertins@gmail.com for consulting, initial help and support or just as a courtesy.
 
 We are very interested in spreading and supporting this software and hope, many other offices will now be able to develop their
@@ -28,13 +28,13 @@ own application software based on this as well.
 RUNNING SEMTIX CLIENT
 ======================
 On each client:
-- Install _openjdk-7-(jre|jdk)_ and _libreoffice_
-- Setup and configure printer, so `/usr/bin/soffice -p` works
+- Install _openjdk-7-(jre|jdk)_ and _libreoffice_ and _apache maven_
+- Setup and configure printer, so `/usr/bin/soffice -p` works for printing out .odt files
 - Set `logo=0` in _sofficerc_, e.g. /etc/libreoffice/sofficerc, /usr/lib/libreoffice/program/sofficerc
 - Copy **semtixconf.properties, log4j.properties and hibernate.cfg.xml to /etc/semtixdb/** and adjust them to your environment
 - Create `/var/log/semtixdb/` and make accessible for users that run semtix
 - Copy templates folder to the place specified in semtixconf.properties
-- Execute `mvn clean install` where the _pom.xml_ file is located whenever you want to build from source with jdk7
+- Execute `mvn clean install` where the _pom.xml_ file is located whenever you want to build from source with JDK7 and Apache Maven
 
 ---
 
