@@ -25,7 +25,7 @@
 <p>This software is a free (GNU Affero 3.0 licensed) open source software meant to help German Semesterticket Offices and 
 therefore contains many terms and explanations only aimed at a german-speaking audience.</p>
 
-<p>During the last decade the Semesterticketbüro of the Humboldt University Berlin pursued the planning and development of this software to </p>
+<p>During the last decade the Semesterticketbüro of the Humboldt University Berlin developed this software to </p>
 
 <ul>
 <li>Remove dependency of Microsoft license fees as this software will run on all operating systems supporting Java 7</li>
@@ -52,14 +52,15 @@ own application software based on this as well.</p>
 <p>On each client:</p>
 
 <ul>
-<li>Install <em>openjdk-7-(jre|jdk)</em> and <em>libreoffice</em>
-</li>
+<li>Install <em>openjdk-7-(jre|jdk)</em> and <em>libreoffice</em> </li>
 <li>Setup and configure printer, so <code>/usr/bin/soffice -p</code> works</li>
 <li>Set <code>logo=0</code> in <em>sofficerc</em>, e.g. /etc/libreoffice/sofficerc, /usr/lib/libreoffice/program/sofficerc</li>
 <li>Copy <strong>semtixconf.properties, log4j.properties and hibernate.cfg.xml to /etc/semtixdb/</strong> and adjust them to your environment</li>
 <li>Create <code>/var/log/semtixdb/</code> and make accessible for users that run semtix</li>
 <li>Copy templates folder to the place specified in semtixconf.properties</li>
-<li>Execute <code>mvn clean install</code> where the <em>pom.xml</em> file is located whenever you want to build from source with jdk7</li>
+<li>If you want to build the program you may also need to install <a href="https://maven.apache.org/">Apache Maven</a>
+</li>
+<li>Execute <code>mvn clean install</code> where the <em>pom.xml</em> file is located whenever you want to build from source with JDK7</li>
 </ul>
 
 <hr>
