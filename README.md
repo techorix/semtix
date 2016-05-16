@@ -6,9 +6,9 @@ This software is a free (GNU Affero 3.0 licensed) open source software meant to 
 therefore contains many terms and explanations only aimed at a german-speaking audience.
 
 During the last decade the Semesterticketbüro of the Humboldt University Berlin pursued planning and development of this software to 
- * Remove dependency of Microsoft license fees as this software will run on all operating systems supporting Java 7
- * Adapt the software to fit its requirement in the best possible way
- * Be independent from other publishers
+ * Remove dependency on proprietary software
+ * Be able to use the client on any operating system that supports Java 7
+ * Adapt the software to fit the requirement in the best possible way
  * Publish the software for the benefit of everyone else
 
 While it may remain unclear who started the idea of this software, from 2011 to 2014 Jürgen Schmelze designed large parts
@@ -16,7 +16,7 @@ of its interface. Starting from 2014, Michael Mertins finished up missing functi
 until today.
 
 If you are related to a University AStA and/or Semesterticketbüro and want to use this software, please contact the
-author who is reachable at MichaelMertins@gmail.com for consulting, initial help and support or just as a courtesy.
+author who is reachable at MichaelMertins@gmail.com for consultation, initial help and support or just as a courtesy.
 
 We are very interested in spreading and supporting this software and hope, many other offices will now be able to develop their
 own application software based on this as well.
@@ -44,8 +44,6 @@ On each client:
 - Go to Admin section and initialize all relevant settings. That also entails clicking on "Speichern" at the path settings in case a field is missing from your `semtixconf.properties`
 - Fill other data that is frequently used (e.g. Textbausteine)
 - Put your libreoffice letter template files in the templates folder
-- In ExternalSettings.java you can specifiy the name values for these templates
-- May also need to set the templates in the `semtixconf.properties` 
 
 --- 
 
@@ -62,7 +60,8 @@ The server is only required to run the actual SQL database:
 ### HINTS/FAQ:
 - check the tests in order to understand the determination process of how much each student will get paid
 - other jdbc databases but PostgreSQL should also work but have not been tested
-- While printing letters or other documents you may run into problems as the engine expects several freemarker placeholders to be present. A complete list of placeholders is, at the moment, only available by looking at the java-code. We use code like this in our odt-templates:     
+- Other places to look for templates are: `ExternalSettings.java` and `semtixconf.properties` 
+- While printing letters or other documents you may run into problems as the engine expects several freemarker placeholders to be present. A complete list of placeholders is, at the moment, only available by looking at the Java-code. We use freemarker code like this in our odt-templates:     
       ``
       ${vorname} ${nachname}[#if co??]${"\n"}c/o ${co}[/#if]
       [#if zusatz??]${"\n"}${zusatz}[/#if] 
