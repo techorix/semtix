@@ -41,18 +41,11 @@ On each client:
 ### FIRST STEPS ON CLIENT
 - Datenbank `->` Neues Semester Anlegen and create a new Semester
 - Datenbank `->` Aktuelles Semester and select the Semester as Global Semester
-- AdminTools and initialize all relevant settings. That also entails clicking on "Speichern" at the path settings in case a field is missing from your `semtixconf.properties`
+- Go to Admin section and initialize all relevant settings. That also entails clicking on "Speichern" at the path settings in case a field is missing from your `semtixconf.properties`
 - Fill other data that is frequently used (e.g. Textbausteine)
-- In `DBHandlerTextbausteine.java` you may add default text blocks for daily usage and/or development/testing
-- Put your letter templates in the templates folder
-- In ExternalSettings.java you can specifiy the String values for these templates
+- Put your libreoffice letter template files in the templates folder
+- In ExternalSettings.java you can specifiy the name values for these templates
 - May also need to set the templates in the `semtixconf.properties` 
-- While printing letters or other documents you may run into problems as the engine expects several freemarker placeholders to be present. A complete list of placeholders is, at the moment, only available by looking at the java-code. We use code like this in our odt-templates:     
-      ``
-      ${vorname} ${nachname}[#if co??]${"\n"}c/o ${co}[/#if]
-      [#if zusatz??]${"\n"}${zusatz}[/#if] 
-      ``  
-
 
 --- 
 
@@ -69,6 +62,12 @@ The server is only required to run the actual SQL database:
 ### HINTS/FAQ:
 - check the tests in order to understand the determination process of how much each student will get paid
 - other jdbc databases but PostgreSQL should also work but have not been tested
+- While printing letters or other documents you may run into problems as the engine expects several freemarker placeholders to be present. A complete list of placeholders is, at the moment, only available by looking at the java-code. We use code like this in our odt-templates:     
+      ``
+      ${vorname} ${nachname}[#if co??]${"\n"}c/o ${co}[/#if]
+      [#if zusatz??]${"\n"}${zusatz}[/#if] 
+      ``  
+
 - configure git to use odt2txt when pushing new Odt-Templates in order to avoid binary blobs  
 
 In your .git/config :    
