@@ -68,13 +68,11 @@ The server is only required to run the actual SQL database:
       ``  
 
 - configure git to use odt2txt when pushing new Odt-Templates in order to avoid binary blobs  
-
-In your .git/config :    
-``
-[diff "odt"]
-        binary = true
-        textconv = odt2txt
-``
-
-In your .gitattributes :   
-`*.odt diff=odt`
+- In your .git/config :    
+	``
+	[diff "odt"]
+        	binary = true
+	        textconv = odt2txt
+	``
+- In your .gitattributes :   
+	`*.odt diff=odt`
