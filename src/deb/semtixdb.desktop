@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=SemtixDB
+Name[de]=SemtixDB
+Comment=Management Software of the semester ticket office
+Comment[de]=Verwaltungssoftware des Semesterticketbüros
+Exec=java -jar /usr/lib/semtixdb/semtix.jar
+Icon=/usr/share/icons/hicolor/scalable/apps/semtix.svg
+Terminal=false
+Type=Application
+Categories=Office;Java;Database;
