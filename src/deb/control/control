@@ -1,0 +1,11 @@
+Package: semtixdb
+Version: 1.0-1
+Section: misc
+Priority: optional
+Architecture: all
+Depends: default-jre, postgresql-client, libreoffice
+Recommends: cups
+Maintainer: Felix Schuergut <schuergf@student.hu-berlin.de>
+Description: Semesterticketbuerosoftware der HU Berlin
+Homepage: https://github.com/techorix/semtix
+Distribution: stable
