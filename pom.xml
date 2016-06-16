@@ -171,6 +171,84 @@
 					</execution>
 				</executions>
 			</plugin>
+
+	<!-- Builds a simple debian package -->
+			<plugin>
+                		<artifactId>jdeb</artifactId>
+                		<groupId>org.vafer</groupId>
+                		<version>1.2</version>
+                		<executions>
+                		    <execution>
+                        		<phase>package</phase>
+                        		<goals>
+                        		    <goal>jdeb</goal>
+                        		</goals>
+                        		<configuration>
+                        		    <verbose>true</verbose>
+                        		    <snapshotExpand>false</snapshotExpand>
+                        		    <!-- expand "SNAPSHOT" to what is in the "USER" env variable -->
+                        		    <snapshotEnv>USER</snapshotEnv>
+                        		    <verbose>true</verbose>
+                        		    <controlDir>${basedir}/src/deb/control</controlDir>
+                        		    <dataSet>
+						<data>
+                        			        <type>template</type>
+                        			        <paths>
+                        			            <path>/etc/semtixdb</path>
+                       				            <path>/usr/share/java</path>
+                                			    <path>/var/log/semtixdb</path>
+                     					    <path>/usr/share/semtixdb/templates</path>
+							<!--	<path>/usr/share/icons/hicolor/scalable/apps</path> -->
+                                			</paths>
+                            			</data>
+                        		        <data>
+                                			<src>${project.build.directory}/semtix-2.3-jar-with-dependencies.jar</src>
+				  			<dst>usr/share/java/semtix.jar</dst>
+                                  			<type>file</type>
+                                  			<mapper>
+                                  			  <type>perm</type>
+								<filemode>755</filemode>
+                                  			</mapper>
+                               			 </data>
+						 <data>
+							<type>file</type>
+							<src>${project.basedir}/etc/semtixdb/semtixconf.properties</src>
+							<dst>etc/semtixdb/semtixconf.properties.example</dst>
+						</data>
+						<data>
+							<type>file</type>
+							<src>${project.basedir}/etc/semtixdb/log4j.properties</src>
+							<dst>etc/semtixdb/log4j.properties.example</dst>
+						</data>
+						<data>
+							<type>file</type>
+							<src>${project.basedir}/etc/semtixdb/hibernate.cfg.xml</src>
+							<dst>etc/semtixdb/hibernate.cfg.xml.example</dst>
+							<mapper>
+                                                 	<type>perm</type>
+                                                 	<filemode>640</filemode>
+                                                	</mapper>
+						</data>
+						<data>
+						<type>file</type>
+						<src>${project.basedir}/src/main/resources/images/appicon.svg</src>
+						<dst>usr/share/icons/hicolor/scalable/apps/semtix.svg</dst>
+						</data>
+						
+						<data>
+						<type>file</type>
+						<src>${project.basedir}/src/deb/semtixdb.desktop</src>
+						<dst>usr/share/applications/semtixdb.desktop</dst>
+						<mapper>
+						 <type>perm</type>
+						 <filemode>644</filemode>
+						</mapper>
+						</data>
+                      			</dataSet>
+                        		</configuration>
+                  		  </execution>
+                		</executions>
+            		</plugin>
 		</plugins>
 	</build>
 </project>
