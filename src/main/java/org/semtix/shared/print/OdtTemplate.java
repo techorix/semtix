@@ -124,7 +124,8 @@ public class OdtTemplate {
 		}
 
 		String nachname = getNachname(antrag.getPersonID());
-		String fileName = "bescheid_" + nachname + "_" + dateFormatted + ".odt";
+		String vorname  = getVorname(antrag.getPersonID());
+		String fileName = "bescheid_" + nachname + "_" + vorname + "_" + dateFormatted + ".odt";
 		String templatePath;
 
 		if (istAuszahlungUndKeinBescheid) {
@@ -138,9 +139,11 @@ public class OdtTemplate {
 			if (data.containsKey("co"))
 				data.remove("co");
 
+// azas ebenfalls nach nachnamen sortieren, analog zu bescheiden (s.o.)
+// vornamen mit einbeziehen
 
-			fileName = "aza_antragid_" + antrag.getAntragID() +
-					"_" + dateFormatted + ".odt";
+			fileName = "aza_" + nachname +
+					"_" + vorname + "_" + dateFormatted + ".odt";
 
 			templatePath = SettingsExternal.gettemplateAza();
 
@@ -289,6 +292,11 @@ public class OdtTemplate {
 		return fillTemplate(templatePath, data, fileName);
 
 
+	}
+
+	private static String getVorname(int personID) {
+		DBHandlerPerson dbHandlerPerson = new DBHandlerPerson();
+		return dbHandlerPerson.getPersonById(personID).getVorname();
 	}
 
 	private static String getNachname(int personID) {
