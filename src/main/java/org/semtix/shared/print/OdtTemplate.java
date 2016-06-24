@@ -123,10 +123,8 @@ public class OdtTemplate {
 			}
 		}
 
-		String fileName = "bescheid_antragid_" + antrag.getAntragID() +
-				"_" + dateFormatted + ".odt";
-
-
+		String nachname = getNachname(antrag.getPersonID());
+		String fileName = "bescheid_" + nachname + "_" + dateFormatted + ".odt";
 		String templatePath;
 
 		if (istAuszahlungUndKeinBescheid) {
@@ -291,6 +289,11 @@ public class OdtTemplate {
 		return fillTemplate(templatePath, data, fileName);
 
 
+	}
+
+	private static String getNachname(int personID) {
+		DBHandlerPerson dbHandlerPerson = new DBHandlerPerson();
+		return dbHandlerPerson.getPersonById(personID).getNachname();
 	}
 
 	/**
