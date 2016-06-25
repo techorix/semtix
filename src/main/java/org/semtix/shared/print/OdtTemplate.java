@@ -119,7 +119,7 @@ public class OdtTemplate {
 			if (betrag.compareTo(vollzuschuss) >= 0) {
 				data.put("betrag", DeutschesDatum.getEuroFormatted(vollzuschuss));
 			} else {
-				data.put("betrag", betrag);
+				data.put("betrag", DeutschesDatum.getEuroFormatted(betrag));
 			}
 		}
 
