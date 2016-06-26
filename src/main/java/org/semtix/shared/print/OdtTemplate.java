@@ -367,7 +367,7 @@ public class OdtTemplate {
 	 * @throws IOException Dateizugriffehler
 	 */
 	public void printBescheid(Antrag antrag) throws IOException {
-		OdtPrinter.print(generateOutputFile(antrag, false), 2);
+		OdtRenderer.print(generateOutputFile(antrag, false), 2);
 	}
 
 	/**

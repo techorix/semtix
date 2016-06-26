@@ -22,8 +22,6 @@ import org.semtix.shared.daten.ArrayHelper;
 
 import java.io.IOException;
 
-import static org.semtix.config.SettingsExternal.OUTPUT_PATH;
-
 /**
  * Einzige Klasse in der tatsächlich ein Odt-Dokument gedruckt wird
  *
@@ -62,7 +60,7 @@ public class OdtPrinter {
     public static void printFiles(String[] pathnames) throws IOException {
 
 
-        String[] wholeCommand = ArrayHelper.concatenate(new String[]{"soffice", "--headless", "--nolockcheck", "--convert-to", "pdf", "--outdir", OUTPUT_PATH}, pathnames);
+        String[] wholeCommand = ArrayHelper.concatenate(new String[]{"soffice", "--headless", "--nolockcheck", "-p",}, pathnames);
 
         wholeCommand = ArrayHelper.concatenate(wholeCommand, new String[]{" &"});
 
