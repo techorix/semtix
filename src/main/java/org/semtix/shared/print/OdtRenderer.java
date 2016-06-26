@@ -10,7 +10,7 @@ public class OdtRenderer {
 
     /*
      * Hier wird ein odt Dokument in eine PDF konvertiert und im ausgabepfad
-     * gespeichert. Besonders nützlich für große Druckauftraege wie in beim
+     * gespeichert. Besonders nützlich für große Druckauftraege wie beim
      * Bescheide-Druck.
      *
      * Created by FS on 26.06.2016
