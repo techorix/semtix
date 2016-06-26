@@ -60,7 +60,7 @@ public class OdtPrinter {
     public static void printFiles(String[] pathnames) throws IOException {
 
 
-        String[] wholeCommand = ArrayHelper.concatenate(new String[]{"soffice", "--headless", "--nolockcheck", "-p",}, pathnames);
+        String[] wholeCommand = ArrayHelper.concatenate(new String[]{"soffice", "--headless", "--nolockcheck", "-p"}, pathnames);
 
         wholeCommand = ArrayHelper.concatenate(wholeCommand, new String[]{" &"});
 
