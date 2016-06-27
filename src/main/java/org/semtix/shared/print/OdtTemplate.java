@@ -123,8 +123,8 @@ public class OdtTemplate {
 			}
 		}
 
-		String nachname = getNachname(antrag.getPersonID());
-		String vorname  = getVorname(antrag.getPersonID());
+		String nachname = getNachname(antrag.getPersonID()).replaceAll("\\s","_");
+		String vorname  = getVorname(antrag.getPersonID()).replaceAll("\\s","_");
 		String fileName = "bescheid_" + nachname + "_" + vorname + "_" + dateFormatted + ".odt";
 		String templatePath;
 
@@ -367,7 +367,7 @@ public class OdtTemplate {
 	 * @throws IOException Dateizugriffehler
 	 */
 	public void printBescheid(Antrag antrag) throws IOException {
-		OdtRenderer.print(generateOutputFile(antrag, false), 2);
+		OdtRenderer.print(generateOutputFile(antrag, false));
 	}
 
 	/**
