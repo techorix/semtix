@@ -54,6 +54,10 @@ public class SettingsExternal {
      * Globale Debugging Variable : wenn true, dann werden Debugs in Konsole ausgegeben
 	 */
     public static boolean DEBUG = false;
+    /**
+     * Pfad für Homedir
+     */
+    public static String HOMEDIR = System.getProperty("user.home");
 
     /**
      * Pfad für Template-Dateien
@@ -189,8 +193,11 @@ public class SettingsExternal {
 
     public static void init(Properties einstellungen) {
 
+        if(HOMEDIR.length()==0) {
+            HOMEDIR = System.getProperty("user.dir");
+        }
         try {
-            String ausgabepfad = einstellungen.getProperty("ausgabepfad");
+            String ausgabepfad = einstellungen.getProperty("ausgabepfad").replaceAll("\\$HOME", HOMEDIR);
             if (ausgabepfad.length() > 0) {
                 SettingsExternal.OUTPUT_PATH = ausgabepfad;
             }
@@ -199,7 +206,7 @@ public class SettingsExternal {
         }
 
         try {
-            String ausgabepfad = einstellungen.getProperty("pdfpfad");
+            String ausgabepfad = einstellungen.getProperty("pdfpfad").replaceAll("\\$HOME", HOMEDIR);
             if (ausgabepfad.length() > 0) {
                 SettingsExternal.PDF_PATH = ausgabepfad;
             }
@@ -208,7 +215,7 @@ public class SettingsExternal {
         }
 
         try {
-            String vorlagenpfad = einstellungen.getProperty("vorlagenpfad");
+            String vorlagenpfad = einstellungen.getProperty("vorlagenpfad").replaceAll("\\$HOME", HOMEDIR);
             if (vorlagenpfad.length() > 0) {
                 SettingsExternal.TEMPLATE_PATH = vorlagenpfad;
             }
