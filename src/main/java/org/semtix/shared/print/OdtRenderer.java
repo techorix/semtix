@@ -17,7 +17,7 @@ public class OdtRenderer {
     /*
 
      /*
-     * Renders one file n times as pdf
+     * Renders one file as pdf
      *
      * @param path file location
      * @throws IOException Dateizugrifffehler
