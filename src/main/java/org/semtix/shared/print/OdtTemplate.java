@@ -164,6 +164,17 @@ public class OdtTemplate {
 				data.put("iban", person.getIBAN());
 				data.put("bic", person.getBIC());
 				data.put("aa", "J");
+				if (!(null == person.getKontoInhaber_Name() || person.getKontoInhaber_Name().length() == 0)) {
+					data.put("kontoinhaberin", person.getKontoInhaber_Name());
+					data.put("ktostrasse", person.getKontoInhaber_Strasse());
+					//	data.put("ktoplz", "");
+					data.put("ktowohnort", person.getKontoInhaber_Wohnort());
+				}	else {
+					data.put("kontoinhaberin",  person.toString());
+					data.put("ktostrasse", person.getStrasse());
+					data.put("ktoplz", person.getPlz());
+					data.put("ktowohnort", person.getWohnort());
+				}
 			}
 
 
@@ -271,8 +282,16 @@ public class OdtTemplate {
 					data.put("iban", person.getIBAN());
 					data.put("bic", person.getBIC());
 
-					if (!(null == person.getKontoInhaber_Name() || person.getKontoInhaber_Name().length() == 0))
-						data.put("kontoinhaber", person.getKontoInhaber_Name() + ", " + person.getKontoInhaber_Strasse() + ", " + person.getKontoInhaber_Wohnort());
+					if (!(null == person.getKontoInhaber_Name() || person.getKontoInhaber_Name().length() == 0)) {
+							data.put("kontoinhaberin", person.getKontoInhaber_Name());
+							data.put("ktostrasse", person.getKontoInhaber_Strasse());
+							data.put("ktowohnort", person.getKontoInhaber_Wohnort());
+					}	else {
+						data.put("kontoinhaberin",  person.toString());
+						data.put("ktostrasse", person.getStrasse());
+						data.put("plz", "");
+						data.put("ktowohnort", person.getWohnort());
+						}
 
 				}
 			}
