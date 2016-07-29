@@ -284,14 +284,7 @@ public class OdtTemplate {
 
 					if (!(null == person.getKontoInhaber_Name() || person.getKontoInhaber_Name().length() == 0)) {
 							data.put("kontoinhaberin", person.getKontoInhaber_Name());
-							data.put("ktostrasse", person.getKontoInhaber_Strasse());
-							data.put("ktowohnort", person.getKontoInhaber_Wohnort());
-					}	else {
-						data.put("kontoinhaberin",  person.toString());
-						data.put("ktostrasse", person.getStrasse());
-						data.put("plz", "");
-						data.put("ktowohnort", person.getWohnort());
-						}
+					}
 
 				}
 			}
