@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.semtix.config.SettingsExternal.PDF_PATH;
+
 /**
  * Dialog zur Anzeige der Personen, die seit 5 oder mehr Semestern keinen Antrag mehr gestellt haben.
  */
@@ -250,35 +252,71 @@ public class DialogListPrint
 
 		@Override
 		public void run() {
-			for (int j = 1; j <= howOften; j++) {
-				outputText.insert("\n" +
-						"\n============================\n" +
-						"\n STARTE DURCHGANG " + j + "\n" +
-						"\n============================\n" +
-						"\n", 0);
+			if (istAZA == true) {
 
-				for (String path : pathsToPrint) {
-					if (mayRun) {
-						try {
-							OdtPrinter.print(path, 1);
 
-							outputText.insert(path + " wurde an den Drucker gesendet. \n", 0);
+					outputText.insert("\n" +
+							"\n============================\n" +
+							"\n STARTE DRUCK " + "\n" +
+							"\n============================\n" +
+							"\n", 0);
 
-							sleep(2000);
-						} catch (InterruptedException | IOException e) {
-							e.printStackTrace();
-						}
-					} else {
-						while (!mayRun) {
+					for (String path : pathsToPrint) {
+						if (mayRun) {
 							try {
-								sleep(100);
-							} catch (InterruptedException e) {
+								OdtPrinter.print(path, howOften);
+
+								outputText.insert(path + " wurde an den Drucker gesendet. \n", 0);
+
+								sleep(2000);
+							} catch (InterruptedException | IOException e) {
 								e.printStackTrace();
+							}
+						} else {
+							while (!mayRun) {
+								try {
+									sleep(100);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
 							}
 						}
 					}
-				}
+
+			} else {
+					outputText.insert("\n" +
+							"\n============================\n" +
+							"\n STARTE PDF ERSTELLUNG " + "\n" +
+							"\n PDF Ausgabepfad: " + PDF_PATH + "\n" +
+							"\n============================\n" +
+							"\n", 0);
+
+					for (String path : pathsToPrint) {
+						if (mayRun) {
+							try {
+								OdtRenderer.print(path);
+
+								outputText.insert(path + " wurde als PDF erstellt. \n", 0);
+
+								// sollte auf min. 1000 bleiben, da sonst schnell out of mem...
+
+								sleep(1000);
+							} catch (InterruptedException | IOException e) {
+								e.printStackTrace();
+							}
+						} else {
+							while (!mayRun) {
+								try {
+									sleep(100);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+					}
+
 			}
+
 		}
 	}
 

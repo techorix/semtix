@@ -54,6 +54,10 @@ public class SettingsExternal {
      * Globale Debugging Variable : wenn true, dann werden Debugs in Konsole ausgegeben
 	 */
     public static boolean DEBUG = false;
+    /**
+     * Pfad für Homedir
+     */
+    public static String HOMEDIR = System.getProperty("user.home");
 
     /**
      * Pfad für Template-Dateien
@@ -63,6 +67,10 @@ public class SettingsExternal {
      * Pfad für Ausgabedateien
      */
     public static String OUTPUT_PATH = null;
+    /**
+     * Pfad für PDF-Dateien beim Drucken von Antraegen
+     */
+    public static String PDF_PATH = null;
     /**
      * Pfad für Hibernate-Settings
      */
@@ -185,8 +193,11 @@ public class SettingsExternal {
 
     public static void init(Properties einstellungen) {
 
+        if(HOMEDIR.length()==0) {
+            HOMEDIR = System.getProperty("user.dir");
+        }
         try {
-            String ausgabepfad = einstellungen.getProperty("ausgabepfad");
+            String ausgabepfad = einstellungen.getProperty("ausgabepfad").replaceAll("\\$HOME", HOMEDIR);
             if (ausgabepfad.length() > 0) {
                 SettingsExternal.OUTPUT_PATH = ausgabepfad;
             }
@@ -195,7 +206,16 @@ public class SettingsExternal {
         }
 
         try {
-            String vorlagenpfad = einstellungen.getProperty("vorlagenpfad");
+            String ausgabepfad = einstellungen.getProperty("pdfpfad").replaceAll("\\$HOME", HOMEDIR);
+            if (ausgabepfad.length() > 0) {
+                SettingsExternal.PDF_PATH = ausgabepfad;
+            }
+        } catch (NullPointerException npe) {
+            logger.warn("PDF-Ausgabepfad nicht in Properties angegeben.");
+        }
+
+        try {
+            String vorlagenpfad = einstellungen.getProperty("vorlagenpfad").replaceAll("\\$HOME", HOMEDIR);
             if (vorlagenpfad.length() > 0) {
                 SettingsExternal.TEMPLATE_PATH = vorlagenpfad;
             }
@@ -251,6 +271,9 @@ public class SettingsExternal {
 
         if (null == OUTPUT_PATH)
             logger.warn("Bitte überprüfen Sie ob 'ausgabepfad=<pfad>' in semtixconf.properties angegeben ist.");
+
+        if (null == PDF_PATH)
+            logger.warn("Bitte überprüfen Sie ob 'pdfpfad=<pfad>' in semtixconf.properties angegeben ist.");
 
         if (null == TEMPLATE_PATH)
             logger.warn("Bitte überprüfen Sie ob 'vorlagenpfad=<pfad>' in semtixconf.properties angegeben ist.");
@@ -308,6 +331,9 @@ public class SettingsExternal {
         else
             System.out.println("Bitte Varable 'ausgabepfad' manuell in " + Settings.DEFAULT_PROPERTIES_GLOBAL + " setzen.");
 
+        if (!(null == PDF_PATH)) einstellungen.setProperty("ausgabepfad", PDF_PATH);
+        else
+            System.out.println("Bitte Varable 'pdfpfad' manuell in " + Settings.DEFAULT_PROPERTIES_GLOBAL + " setzen.");
 
         if (!(null == TEMPLATE_PATH)) einstellungen.setProperty("vorlagenpfad", TEMPLATE_PATH);
         else

@@ -23,7 +23,7 @@
 	<packaging>jar</packaging>
     <groupId>de.hu-berlin.semesterticketbuero</groupId>
 	<artifactId>semtix</artifactId>
-    <version>2.3</version>
+    <version>2.4</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -202,12 +202,12 @@
                                 			</paths>
                             			</data>
                         		        <data>
-                                			<src>${project.build.directory}/semtix-2.3-jar-with-dependencies.jar</src>
-				  			<dst>usr/share/java/semtix.jar</dst>
+                                			<src>${project.build.directory}/semtix-${project.version}-jar-with-dependencies.jar</src>
+				  							<dst>usr/share/java/semtix.jar</dst>
                                   			<type>file</type>
                                   			<mapper>
                                   			  <type>perm</type>
-								<filemode>755</filemode>
+												<filemode>755</filemode>
                                   			</mapper>
                                			 </data>
 						 <data>

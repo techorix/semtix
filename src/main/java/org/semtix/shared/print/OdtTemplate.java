@@ -123,8 +123,8 @@ public class OdtTemplate {
 			}
 		}
 
-		String nachname = getNachname(antrag.getPersonID());
-		String vorname  = getVorname(antrag.getPersonID());
+		String nachname = getNachname(antrag.getPersonID()).replaceAll("\\s","_");
+		String vorname  = getVorname(antrag.getPersonID()).replaceAll("\\s","_");
 		String fileName = "bescheid_" + nachname + "_" + vorname + "_" + dateFormatted + ".odt";
 		String templatePath;
 
@@ -164,6 +164,17 @@ public class OdtTemplate {
 				data.put("iban", person.getIBAN());
 				data.put("bic", person.getBIC());
 				data.put("aa", "J");
+				if (!(null == person.getKontoInhaber_Name() || person.getKontoInhaber_Name().length() == 0)) {
+					data.put("kontoinhaberin", person.getKontoInhaber_Name());
+					data.put("ktostrasse", person.getKontoInhaber_Strasse());
+					//	data.put("ktoplz", "");
+					data.put("ktowohnort", person.getKontoInhaber_Wohnort());
+				}	else {
+					data.put("kontoinhaberin",  person.toString());
+					data.put("ktostrasse", person.getStrasse());
+					data.put("ktoplz", person.getPlz());
+					data.put("ktowohnort", person.getWohnort());
+				}
 			}
 
 
@@ -271,8 +282,9 @@ public class OdtTemplate {
 					data.put("iban", person.getIBAN());
 					data.put("bic", person.getBIC());
 
-					if (!(null == person.getKontoInhaber_Name() || person.getKontoInhaber_Name().length() == 0))
-						data.put("kontoinhaber", person.getKontoInhaber_Name() + ", " + person.getKontoInhaber_Strasse() + ", " + person.getKontoInhaber_Wohnort());
+					if (!(null == person.getKontoInhaber_Name() || person.getKontoInhaber_Name().length() == 0)) {
+							data.put("kontoinhaberin", person.getKontoInhaber_Name());
+					}
 
 				}
 			}
@@ -367,7 +379,7 @@ public class OdtTemplate {
 	 * @throws IOException Dateizugriffehler
 	 */
 	public void printBescheid(Antrag antrag) throws IOException {
-		OdtPrinter.print(generateOutputFile(antrag, false), 2);
+		OdtRenderer.print(generateOutputFile(antrag, false));
 	}
 
 	/**
