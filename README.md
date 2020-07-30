@@ -13,9 +13,12 @@ During the last decade the Semesterticketbüro of the Humboldt University Berlin
 
 While it may remain unclear who started the idea of this software, from 2011 to 2014 Jürgen Schmelze designed large parts
 of its interface. Starting from 2014, Michael Mertins finished up missing functionalities and is working on this software
-until today.
+until 2016. 
 
-If you are related to a University AStA and/or Semesterticketbüro and want to use this software, please contact the
+FU Berlin clone: https://git.astafu.de/astafu/semtixdb
+HU Berlin uses fork maintained by Schuergi
+
+If you are related to a University AStA and/or Semesterticketbüro and want to adapt this software to your needs, please contact the
 author who is reachable at MichaelMertins@gmail.com for consultation, initial help and support or just as a courtesy.
 
 We are very interested in spreading and supporting this software and hope, many other offices will now be able to develop their
